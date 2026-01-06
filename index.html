@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I Love You</title>
+<style>
+  /* Full screen setup */
+  body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+    animation: bgAnimation 10s infinite alternate;
+  }
+
+  /* Animated background gradient */
+  @keyframes bgAnimation {
+    0% { background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%); }
+    50% { background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%); }
+    100% { background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); }
+  }
+
+  /* Text styling */
+  h1 {
+    font-size: 5rem;
+    color: white;
+    text-shadow: 0 0 20px rgba(255,255,255,0.6);
+    animation: textPulse 2s infinite;
+  }
+
+  /* Text pulse animation */
+  @keyframes textPulse {
+    0%, 100% { transform: scale(1); color: #fff; }
+    50% { transform: scale(1.2); color: #ffe0e0; }
+  }
+
+  /* Floating hearts animation */
+  .heart {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: red;
+    transform: rotate(45deg);
+    animation: floatUp 5s linear infinite;
+  }
+
+  .heart::before,
+  .heart::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: red;
+    border-radius: 50%;
+  }
+
+  .heart::before { top: -10px; left: 0; }
+  .heart::after { left: 10px; top: 0; }
+
+  @keyframes floatUp {
+    0% { transform: translateY(0) rotate(45deg); opacity: 1; }
+    100% { transform: translateY(-600px) rotate(45deg); opacity: 0; }
+  }
+</style>
+</head>
+<body>
+
+<h1>I Love You</h1>
+
+<script>
+  // Create floating hearts randomly
+  setInterval(() => {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.style.left = Math.random() * window.innerWidth + 'px';
+    heart.style.animationDuration = 3 + Math.random() * 3 + 's';
+    document.body.appendChild(heart);
+
+    // Remove heart after animation
+    setTimeout(() => {
+      heart.remove();
+    }, 6000);
+  }, 500);
+</script>
+
+</body>
+</html>
